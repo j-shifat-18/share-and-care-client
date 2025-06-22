@@ -1,19 +1,39 @@
+import { use } from "react";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../Contexts/AuthContext";
 
 const Navbar = () => {
+  const { user , logOutUser} = use(AuthContext);
+
   const links = (
     <>
       <li>
-        <NavLink to="/" className='font-medium text-sm text-primary'>Home</NavLink>
+        <NavLink to="/" className="font-medium text-sm text-primary">
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/addFood" className='font-medium text-sm text-primary'>Add Food</NavLink>
+        <NavLink to="/addFood" className="font-medium text-sm text-primary">
+          Add Food
+        </NavLink>
       </li>
-      
     </>
   );
+
+  const handleLogout = () =>{
+    logOutUser()
+    .then(()=>{
+        console.log('user Logged out')
+    })
+    .catch(error=>{
+        console.log(error)
+    })
+  }
+
+  console.log(user);
+
   return (
-    <div className="navbar border-b border-[#E5E8EB] px-10 py-3 sticky">
+    <div className="navbar border-b border-[#E5E8EB] bg-[#141A1F] px-10 py-3 ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -44,8 +64,25 @@ const Navbar = () => {
       </div>
       <div className="navbar-end gap-3">
         <ul className="menu menu-horizontal px-1 ">{links}</ul>
-        <Link to='/login' className="btn bg-[#DBE8F2] text-secondary rounded-xl font-bold text-sm">Login</Link>
-        <Link to='/signup' className="btn bg-[#2B3640] text-primary rounded-xl font-bold text-sm">Sign Up</Link>
+
+        {user ? (
+          <button onClick={handleLogout} className="btn bg-[#2B3640] text-primary rounded-xl font-bold text-sm">Logout</button>
+        ) : (
+          <>
+            <Link
+              to="/login"
+              className="btn bg-[#DBE8F2] text-secondary rounded-xl font-bold text-sm"
+            >
+              Login
+            </Link>
+            <Link
+              to="/signup"
+              className="btn bg-[#2B3640] text-primary rounded-xl font-bold text-sm"
+            >
+              Sign Up
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
