@@ -1,12 +1,12 @@
-import React from 'react';
-import Navbar from '../../Components/Navbar';
+import React from "react";
+import Banner from "../../Components/Banner";
 
 const Home = () => {
-    return (
-        <div>
-            <Navbar></Navbar>
-        </div>
-    );
+  return (
+    <div>
+      <Banner></Banner>
+    </div>
+  );
 };
 
 export default Home;
