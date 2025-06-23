@@ -1,31 +1,56 @@
-import React, { use } from 'react';
-import { AuthContext } from '../../Contexts/AuthContext';
-import Loader from '../../Components/Loader';
+import React, { use } from "react";
+import { AuthContext } from "../../Contexts/AuthContext";
+import Loader from "../../Components/Loader";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const AddFood = () => {
-    const {user} = use(AuthContext);
+  const { user } = use(AuthContext);
 
-    if(!user){
-        return <Loader></Loader>;
-    }
+  if (!user) {
+    return <Loader></Loader>;
+  }
 
-    console.log(user);
+  console.log(user);
 
-    const handleAddFood = (e)=>{
-        e.preventDefault();
-        const form = e.target;
-        const name = form.name.value;
-        const imageURL = form.imageURL.value;
-        const quantity = form.quantity.value;
-        const location = form.location.value;
-        const expireDate = form.expireDate.value;
-        const notes = form.notes.value;
-        const status = form.status.value;
+  const handleAddFood = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const imageURL = form.imageURL.value;
+    const quantity = form.quantity.value;
+    const location = form.location.value;
+    const expireDate = form.expireDate.value;
+    const notes = form.notes.value;
+    const status = form.status.value;
 
-        console.log(name , imageURL , quantity , location , expireDate , notes , status);
-    }
-    return (
-        <div className="min-h-screen flex justify-center items-start pt-10 px-4">
+    const newFoodData = {
+      name,
+      imageURL,
+      quantity,
+      location,
+      expireDate,
+      notes,
+      status,
+    };
+
+    axios
+      .post("http://localhost:3000/foods", newFoodData)
+      .then((response) => {
+        if (response.data.insertedId) {
+          Swal.fire({
+            title: "Thanks for sharing Love!",
+            icon: "success",
+            draggable: true,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  return (
+    <div className="min-h-screen flex justify-center items-start pt-10 px-4">
       <form
         onSubmit={handleAddFood}
         className="w-full max-w-2xl p-8 rounded-lg "
@@ -42,7 +67,6 @@ const AddFood = () => {
             name="name"
             placeholder="Enter food name"
             className="input input-bordered w-full"
-            
             required
           />
         </div>
@@ -57,7 +81,6 @@ const AddFood = () => {
             name="imageURL"
             placeholder="Enter image URL"
             className="input input-bordered w-full"
-           
           />
         </div>
 
@@ -127,8 +150,6 @@ const AddFood = () => {
           ></textarea>
         </div>
 
-        
-
         {/* Donor Details (static for now) */}
         <div className="mb-6">
           <p className="text-sm font-semibold mb-2">Donor Details</p>
@@ -147,11 +168,13 @@ const AddFood = () => {
 
         {/* Submit Button */}
         <div className="text-right">
-          <button className="btn bg-primary text-secondary px-6 rounded-full">Add Food</button>
+          <button className="btn bg-primary text-secondary px-6 rounded-full">
+            Add Food
+          </button>
         </div>
       </form>
     </div>
-    );
+  );
 };
 
 export default AddFood;
