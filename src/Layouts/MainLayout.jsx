@@ -11,7 +11,7 @@ const MainLayout = () => {
             <header>
                 <Navbar></Navbar>
             </header>
-            <main>
+            <main className='max-w-4/5 mx-auto'>
                 <Outlet></Outlet>
             </main>
             <footer>
