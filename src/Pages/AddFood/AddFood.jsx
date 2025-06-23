@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { use } from 'react';
+import { AuthContext } from '../../Contexts/AuthContext';
+import Loader from '../../Components/Loader';
 
 const AddFood = () => {
+    const {user} = use(AuthContext);
+
+    if(!user){
+        return <Loader></Loader>;
+    }
+
+    console.log(user);
+
     const handleAddFood = (e)=>{
         e.preventDefault();
         const form = e.target;
@@ -125,12 +135,12 @@ const AddFood = () => {
           <div className="flex items-center gap-3">
             <div className="avatar">
               <div className="w-10 rounded-full">
-                <img src="https://i.pravatar.cc/100?img=12" alt="Donor Avatar" />
+                <img src={user.photoURL} alt="Donor Avatar" />
               </div>
             </div>
             <div>
-              <p className="text-base font-medium">Olivia Smith</p>
-              <p className="text-sm text-gray-400">olivia.smith@email.com</p>
+              <p className="text-base font-medium">{user.displayName}</p>
+              <p className="text-sm text-gray-400">{user.email}</p>
             </div>
           </div>
         </div>
