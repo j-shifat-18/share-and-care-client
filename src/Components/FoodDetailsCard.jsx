@@ -26,7 +26,8 @@ const FoodDetailsCard = () => {
     const foodId = id;
     const requestName = user.displayName;
     const requestEmail = user.email;
-    const requestInfo = { foodId, requestName, requestEmail };
+    const uid = user.uid;
+    const requestInfo = { foodId, requestName, requestEmail , uid };
     axios
       .post("http://localhost:3000/foodRequest", requestInfo)
       .then((response) => {

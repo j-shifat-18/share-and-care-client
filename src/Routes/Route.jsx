@@ -9,6 +9,7 @@ import AvailableFoods from "../Pages/AvailableFoods/AvailableFoods";
 import FoodDetailsCard from "../Components/FoodDetailsCard";
 import Loader from "../Components/Loader";
 import MyAddedFoods from "../Pages/MyAddedFoods/MyAddedFoods";
+import MyRequests from "../Pages/MyRequests/MyRequests";
 
 export const router = createBrowserRouter([
   {
@@ -17,9 +18,9 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader:()=>fetch('http://localhost:3000/featuredFood'),
+        loader: () => fetch("http://localhost:3000/featuredFood"),
         Component: Home,
-        hydrateFallbackElement:<Loader></Loader>
+        hydrateFallbackElement: <Loader></Loader>,
       },
       {
         path: "/addFood",
@@ -33,7 +34,7 @@ export const router = createBrowserRouter([
         path: "/availableFoods",
         loader: () => fetch("http://localhost:3000/foods"),
         element: <AvailableFoods></AvailableFoods>,
-        hydrateFallbackElement:<Loader></Loader>,
+        hydrateFallbackElement: <Loader></Loader>,
       },
       {
         path: "/availableFoods/:id",
@@ -51,6 +52,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyAddedFoods></MyAddedFoods>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myRequests",
+        element: (
+          <PrivateRoute>
+            <MyRequests></MyRequests>
           </PrivateRoute>
         ),
       },

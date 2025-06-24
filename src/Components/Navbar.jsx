@@ -23,6 +23,11 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
+        <NavLink to="/myRequests" className="font-medium text-sm text-primary">
+          My Requests
+        </NavLink>
+      </li>
+      <li>
         <NavLink to="/myFoods" className="font-medium text-sm text-primary">
           My Foods
         </NavLink>
