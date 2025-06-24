@@ -23,6 +23,10 @@ const AddFood = () => {
     const expireDate = form.expireDate.value;
     const notes = form.notes.value;
     const status = form.status.value;
+    const donorName = user.displayName;
+    const donorEmail = user.email;
+    const donorPhotoURL = user.photoURL;
+    
 
     const newFoodData = {
       name,
@@ -32,6 +36,9 @@ const AddFood = () => {
       expireDate,
       notes,
       status,
+      donorName,
+      donorEmail,
+      donorPhotoURL
     };
 
     axios
