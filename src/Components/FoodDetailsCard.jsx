@@ -21,11 +21,7 @@ const FoodDetailsCard = () => {
     donorPhotoURL,
     donorEmail,
   } = foodData;
-
-  if (!user) {
-    return <Loader></Loader>;
-  }
-
+  
   const handleFoodRequest = (id) => {
     const foodId = id;
     const requestName = user.displayName;

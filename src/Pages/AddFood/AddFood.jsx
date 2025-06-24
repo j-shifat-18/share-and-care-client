@@ -26,6 +26,7 @@ const AddFood = () => {
     const donorName = user.displayName;
     const donorEmail = user.email;
     const donorPhotoURL = user.photoURL;
+    const uid = user.uid;
     
 
     const newFoodData = {
@@ -38,7 +39,9 @@ const AddFood = () => {
       status,
       donorName,
       donorEmail,
-      donorPhotoURL
+      donorPhotoURL,
+      uid
+
     };
 
     axios

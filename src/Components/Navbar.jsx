@@ -22,6 +22,11 @@ const Navbar = () => {
           Add Food
         </NavLink>
       </li>
+      <li>
+        <NavLink to="/myFoods" className="font-medium text-sm text-primary">
+          My Foods
+        </NavLink>
+      </li>
     </>
   );
 

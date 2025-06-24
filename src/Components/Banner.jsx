@@ -1,5 +1,6 @@
 import React from 'react';
 import bannerImg from '../assets/banner-img.png'
+import { Link } from 'react-router';
 
 const Banner = () => {
     return (
@@ -9,7 +10,7 @@ const Banner = () => {
                 <p className='text-xs md:text-base w-4/5 lg:w-3/5 text-center mt-2'>
                     Connect with neighbors to share surplus food, reduce waste, and support those in need. Join our community today!
                 </p>
-                <button className='btn rounded-xl font-bold px-5 py-3 bg-neutral text-secondary mt-8'>Get Started</button>
+                <Link to="/availableFoods" className='btn rounded-xl font-bold px-5 py-3 bg-neutral text-secondary mt-8'>Get Started</Link>
             </div>
         </div>
     );
