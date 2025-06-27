@@ -1,13 +1,25 @@
 import React from "react";
 
 const RequestTableRow = ({ request }) => {
-  const { donorName, expireDate, location, status } = request;
+
+
+  if(!request.foodData || !request.requestData) return ;
+
+  
+  const { donorName, expireDate, location, status , name } = request.foodData;
+  const { requestedAt } = request.requestData;
+
+  const convertedRequestDate = new Date(requestedAt).toLocaleString();
+  const convertedExpireDate = new Date(expireDate).toLocaleString();
+
 
   return (
     <tr>
       <td>{donorName}</td>
+      <td>{name}</td>
       <td>{location}</td>
-      <td>{expireDate}</td>
+      <td>{convertedExpireDate}</td>
+      <td>{convertedRequestDate}</td>
       <td>
         <button
           className={`badge bg-pink-600  cursor-default`}

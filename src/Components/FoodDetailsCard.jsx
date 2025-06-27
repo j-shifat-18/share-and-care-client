@@ -21,13 +21,16 @@ const FoodDetailsCard = () => {
     donorPhotoURL,
     donorEmail,
   } = foodData;
+
+  const convertedExpireDate = new Date(expireDate).toLocaleString();
   
   const handleFoodRequest = (id) => {
     const foodId = id;
     const requestName = user.displayName;
     const requestEmail = user.email;
     const uid = user.uid;
-    const requestInfo = { foodId, requestName, requestEmail , uid };
+    const requestedAt = new Date();
+    const requestInfo = { foodId, requestName, requestEmail , uid ,requestedAt };
     axios
       .post("http://localhost:3000/foodRequest", requestInfo)
       .then((response) => {
@@ -84,7 +87,7 @@ const FoodDetailsCard = () => {
             </div>
             <div>
               <p className="font-semibold">Expires On</p>
-              <p>{expireDate}</p>
+              <p>{convertedExpireDate}</p>
             </div>
             <div>
               <p className="font-semibold">Additional Notes</p>

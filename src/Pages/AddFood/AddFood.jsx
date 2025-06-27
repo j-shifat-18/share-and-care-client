@@ -139,12 +139,12 @@ const AddFood = () => {
           <label className="label">
             <span className="label-text">Food Status</span>
           </label>
-          <input
-            type="text"
-            name="status"
-            placeholder="e.g. Available, Reserved"
-            className="input input-bordered w-full"
-          />
+          <select defaultValue="Pick a color" name="status" className="select w-full ">
+              <option disabled={true}>Food Status</option>
+              <option >Available</option>
+              <option >Requested</option>
+              <option >Unavailable</option>
+            </select>
         </div>
 
         {/* Additional Notes */}

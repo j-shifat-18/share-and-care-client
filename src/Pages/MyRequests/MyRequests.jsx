@@ -4,17 +4,19 @@ import { AuthContext } from "../../Contexts/AuthContext";
 import RequestTableRow from "./RequestTableRow";
 
 const MyRequests = () => {
-    const {user} = use(AuthContext);
-    const [requests , setRequests] = useState([]);
+  const { user } = use(AuthContext);
+  const [requests, setRequests] = useState([]);
 
-    useEffect(()=>{
-        axios.get(`http://localhost:3000/foodRequest/${user.uid}`)
-        .then(response=>{
-            setRequests(response.data);
-        })
-    }, [])
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/foodRequest/${user.uid}`)
+      .then((response) => {
+        setRequests(response.data);
+      });
+  }, []);
 
-  
+  console.log(requests)
+
   return (
     <div className="min-h-screen  px-6 py-10">
       <div className="max-w-6xl mx-auto">
@@ -25,13 +27,20 @@ const MyRequests = () => {
             <thead className="bg-base-200 text-base-content">
               <tr>
                 <th>Donor</th>
+                <th>Food</th>
                 <th>Pickup Location</th>
                 <th>Expire Date</th>
+                <th>Request Date</th>
                 <th>Status</th>
               </tr>
             </thead>
             <tbody>
-              {requests.map((request) => <RequestTableRow key={request._id} request={request}></RequestTableRow>)}
+              {requests.map((request) => (
+                <RequestTableRow
+                  key={request?._id}
+                  request={request}
+                ></RequestTableRow>
+              ))}
               {requests.length === 0 && (
                 <tr>
                   <td colSpan="5" className="text-center py-4">
