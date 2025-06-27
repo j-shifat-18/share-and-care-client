@@ -3,12 +3,14 @@ import { FaEye } from "react-icons/fa6";
 import { FiEyeOff } from "react-icons/fi";
 import { AuthContext } from "../../Contexts/AuthContext";
 import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
-  const { createUser, updateUserProfile, setUser , googleLogin } = use(AuthContext);
+  const { createUser, updateUserProfile, setUser, googleLogin } =
+    use(AuthContext);
 
   const navigate = useNavigate();
 
@@ -32,6 +34,13 @@ const SignUp = () => {
       const newUser = result.user;
       updateUserProfile({ displayName: name, photoURL: photoURL })
         .then(() => {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "SignUp successfull",
+            showConfirmButton: false,
+            timer: 1500,
+          });
           setUser({ ...newUser, displayName: name, photoURL: photoURL });
           navigate(`${location.state ? location.state : "/"}`);
         })
@@ -137,17 +146,17 @@ const SignUp = () => {
           <div className="divider">OR</div>
         </div>
         <button
-            type="button"
-            className="btn btn-outline w-full flex items-center justify-center gap-2"
-            onClick={handleGoogleLogin}
-          >
-            <img
-              src="https://www.svgrepo.com/show/475656/google-color.svg"
-              alt="Google icon"
-              className="w-5 h-5"
-            />
-            Continue with Google
-          </button>
+          type="button"
+          className="btn btn-outline w-full flex items-center justify-center gap-2"
+          onClick={handleGoogleLogin}
+        >
+          <img
+            src="https://www.svgrepo.com/show/475656/google-color.svg"
+            alt="Google icon"
+            className="w-5 h-5"
+          />
+          Continue with Google
+        </button>
       </div>
     </div>
   );

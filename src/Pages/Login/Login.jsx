@@ -3,6 +3,7 @@ import { FaEye } from "react-icons/fa6";
 import { FiEyeOff } from "react-icons/fi";
 import { AuthContext } from "../../Contexts/AuthContext";
 import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -19,6 +20,13 @@ const Login = () => {
 
     signInUser(email, password)
       .then(() => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Logged in successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch(() => {

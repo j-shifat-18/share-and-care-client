@@ -22,7 +22,7 @@ const RequestTableRow = ({ request }) => {
       <td>{convertedRequestDate}</td>
       <td>
         <button
-          className={`badge bg-pink-600  cursor-default`}
+          className={`badge bg-orange-700  cursor-default`}
         >
           {status}
         </button>

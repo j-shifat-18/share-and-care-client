@@ -10,11 +10,13 @@ import FoodDetailsCard from "../Components/FoodDetailsCard";
 import Loader from "../Components/Loader";
 import MyAddedFoods from "../Pages/MyAddedFoods/MyAddedFoods";
 import MyRequests from "../Pages/MyRequests/MyRequests";
+import ErrorPage from "../Pages/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: MainLayout,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
