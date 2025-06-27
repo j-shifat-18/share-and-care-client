@@ -4,6 +4,7 @@ import axios from "axios";
 import FoodTableRow from "./foodTableRow";
 import Swal from "sweetalert2";
 import { Bounce, toast, ToastContainer } from "react-toastify";
+import { formatForDateTimeLocal } from "../../Utils/formatDate";
 
 const MyAddedFoods = () => {
   const [myFoods, setMyFoods] = useState([]);
@@ -33,7 +34,8 @@ const MyAddedFoods = () => {
     const name = form.name.value;
     const location = form.location.value;
     const imageURL = form.imageURL.value;
-    const expireDate = form.expireDate.value;
+    const localExpireDate = form.expireDate.value;
+    const expireDate = new Date(localExpireDate);
     const quantity = form.quantity.value;
     const notes = form.notes.value;
     const status = form.status.value;
@@ -105,6 +107,8 @@ const MyAddedFoods = () => {
       }
     });
   };
+
+
 
   return (
     <div className="min-h-screen px-6 py-10">
@@ -215,7 +219,7 @@ const MyAddedFoods = () => {
               <input
                 type="datetime-local"
                 name="expireDate"
-                defaultValue={selectedFood?.expireDate}
+                defaultValue={formatForDateTimeLocal(selectedFood?.expireDate)}
                 className="input input-bordered w-full"
               />
             </div>

@@ -8,11 +8,11 @@ const MainLayout = () => {
     const location = useLocation();
     const hideFooter = location.pathname === '/login' || location.pathname === '/signup';
     return (
-        <div className='bg-[#141A1F]'>
+        <div className='bg-[#141A1F] relative'>
             <header>
                 <Navbar></Navbar>
             </header>
-            <main className='max-w-4/5 mx-auto'>
+            <main className='max-w-4/5 mx-auto pt-24'>
                 <Outlet></Outlet>
             </main>
             {!hideFooter && (

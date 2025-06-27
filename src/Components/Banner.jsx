@@ -7,7 +7,7 @@ import banner2 from "../assets/banner-2-resized.jpg";
 import banner3 from "../assets/banner-3-resized.jpg";
 import { Link } from "react-router";
 
-const backgroundImages = [banner1, banner2, banner3];
+const backgroundImages = [banner1, banner2, banner3]; 
 
 const Banner = () => {
   const [index, setIndex] = useState(0);
@@ -21,7 +21,7 @@ const Banner = () => {
   }, []);
 
   return (
-    <div className="relative mt-5 mb-10 h-[300px] md:h-[400px] lg:h-[550px] rounded-xl overflow-hidden">
+    <div className="relative mb-10 h-[300px] md:h-[400px] lg:h-[550px] rounded-xl overflow-hidden">
       {/* Background Images */}
       <AnimatePresence mode="wait">
         <motion.div

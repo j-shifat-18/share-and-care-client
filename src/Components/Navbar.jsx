@@ -59,7 +59,7 @@ const Navbar = () => {
   console.log(user);
 
   return (
-    <div className="navbar border-b border-[#E5E8EB] bg-[#141A1F] px-2 md:px-5 lg:px-10 py-3 ">
+    <div className="navbar border-b border-[#E5E8EB] bg-[#141A1F] px-2 md:px-5 lg:px-10 py-3 fixed z-50 top-0">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

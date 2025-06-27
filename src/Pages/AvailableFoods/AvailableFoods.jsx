@@ -1,17 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
 import FoodCard from "../../Components/FoodCard";
+import axios from "axios";
 
 const AvailableFoods = () => {
   const availableFoods = useLoaderData();
-  console.log(availableFoods);
-
+  const [foods, setFood] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [columns, setColumns] = useState(3);
 
-//   const filteredItems = foodItems.filter((item) =>
-//     item.name.toLowerCase().includes(searchText.toLowerCase())
-//   );
+  useEffect(() => {
+    setFood(availableFoods);
+  }, [availableFoods]);
+
+  useEffect(() => {
+    const filteredItems = availableFoods.filter((item) =>
+      item.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+    setFood(filteredItems);
+  }, [availableFoods ,searchText ]);
+
+  console.log(availableFoods);
+
+  const handleSortByExpireDate = () => {
+    axios.get("http://localhost:3000/sortByExpireDate")
+    .then((response)=>{
+      console.log(response.data)
+      setFood(response.data);
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  };
+
   return (
     <div className="min-h-screen px-6 py-10">
       <div className="max-w-6xl mx-auto">
@@ -25,10 +46,12 @@ const AvailableFoods = () => {
             onChange={(e) => setSearchText(e.target.value)}
           />
 
-          <select className="select select-bordered w-full md:w-52">
-            <option>Sort by: Expiry Date</option>
-            <option>Sort by: Quantity</option>
-          </select>
+          <button
+            onClick={handleSortByExpireDate}
+            className="btn bg-base-100 text-primary w-full md:w-52"
+          >
+            Sort by: Expiry Date
+          </button>
         </div>
 
         {/* Column Toggle */}
@@ -36,7 +59,9 @@ const AvailableFoods = () => {
           <button
             onClick={() => setColumns(3)}
             className={`btn w-32 ${
-              columns === 3 ? "bg-primary text-secondary" : "bg-base-100 text-primary"
+              columns === 3
+                ? "bg-primary text-secondary"
+                : "bg-base-100 text-primary"
             }`}
           >
             3-column
@@ -44,7 +69,9 @@ const AvailableFoods = () => {
           <button
             onClick={() => setColumns(2)}
             className={`btn w-32 ${
-              columns === 2 ? "bg-primary text-secondary" : "bg-base-100 text-primary"
+              columns === 2
+                ? "bg-primary text-secondary"
+                : "bg-base-100 text-primary"
             }`}
           >
             2-column
@@ -59,7 +86,9 @@ const AvailableFoods = () => {
               : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
           }`}
         >
-          {availableFoods.map((food) =><FoodCard food={food}></FoodCard>)}
+          {foods.map((food) => (
+            <FoodCard food={food}></FoodCard>
+          ))}
         </div>
 
         {/* Pagination */}

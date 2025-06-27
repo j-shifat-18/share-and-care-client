@@ -20,7 +20,8 @@ const AddFood = () => {
     const imageURL = form.imageURL.value;
     const quantity = form.quantity.value;
     const location = form.location.value;
-    const expireDate = form.expireDate.value;
+    const localExpireDate = form.expireDate.value;
+    const expireDate = new Date(localExpireDate);
     const notes = form.notes.value;
     const status = form.status.value;
     const donorName = user.displayName;

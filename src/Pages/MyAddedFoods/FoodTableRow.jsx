@@ -14,7 +14,7 @@ const FoodTableRow = ({ food, handleDelete, openModal }) => {
         </td>
         <td>{food.quantity}</td>
         <td>{food.location}</td>
-        <td>{food.expireDate}</td>
+        <td>{new Date(food.expireDate).toLocaleString()}</td>
         <td className="text-center">
           <span
             onClick={() => openModal(food)}
