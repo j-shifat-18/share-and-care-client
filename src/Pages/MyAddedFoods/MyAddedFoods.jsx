@@ -51,7 +51,7 @@ const MyAddedFoods = () => {
     console.log(newFoodData);
 
     axios
-      .put(`http://localhost:3000/foods/${selectedFood._id}`, newFoodData)
+      .patch(`http://localhost:3000/foods/${selectedFood._id}`, newFoodData)
       .then((result) => {
         if (result.data.modifiedCount) {
           toast.success("🦄 Food Updated !", {

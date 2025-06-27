@@ -1,4 +1,3 @@
-
 import React from "react";
 
 const FoodTableRow = ({ food, handleDelete, openModal }) => {

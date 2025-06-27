@@ -23,23 +23,34 @@ const FoodDetailsCard = () => {
   } = foodData;
 
   const convertedExpireDate = new Date(expireDate).toLocaleString();
-  
+
   const handleFoodRequest = (id) => {
     const foodId = id;
     const requestName = user.displayName;
     const requestEmail = user.email;
     const uid = user.uid;
     const requestedAt = new Date();
-    const requestInfo = { foodId, requestName, requestEmail , uid ,requestedAt };
+    const requestInfo = { foodId, requestName, requestEmail, uid, requestedAt };
     axios
       .post("http://localhost:3000/foodRequest", requestInfo)
       .then((response) => {
         if (response.data.insertedId) {
-          Swal.fire({
-            title: "Request sent to donor!",
-            icon: "success",
-            draggable: true,
-          });
+          axios
+            .patch(`http://localhost:3000/foods/${_id}`, {
+              status: "Requested",
+            })
+            .then((response2) => {
+              if (response2.data.modifiedCount) {
+                Swal.fire({
+                  title: "Request sent to donor!",
+                  icon: "success",
+                  draggable: true,
+                });
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         }
       })
       .catch((error) => {
