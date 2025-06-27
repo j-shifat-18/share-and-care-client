@@ -56,7 +56,7 @@ const MyAddedFoods = () => {
       .patch(`http://localhost:3000/foods/${selectedFood._id}`, newFoodData)
       .then((result) => {
         if (result.data.modifiedCount) {
-          toast.success("🦄 Food Updated !", {
+          toast.success("Food Updated !", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,

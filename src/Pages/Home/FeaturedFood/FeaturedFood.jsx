@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 
 const FeaturedFood = ({featuredFoods}) => {
     return (
-        <div className='mb-10'>
+        <div className='mb-12'>
             <h2 className='font-bold text-3xl mb-6'>Featured Foods</h2>
             <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5'>
                 {
