@@ -1,4 +1,6 @@
 import React from 'react';
+import { SiIfood } from 'react-icons/si';
+
 
 
 const socialLinks = [
@@ -36,8 +38,8 @@ const Footer = () => {
         <footer className="bg-[#141A1F] text-[#DBE8F2] border-t border-[#2B3640] mt-8">
             <div className="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row justify-between items-center md:items-start gap-8">
                 {/* Logo and Brand */}
-                <div className="flex flex-col items-center md:items-start gap-2">
-                    <img src="https://imgs.search.brave.com/zDw1xGdwixUElXRu1cjMhrSWf06QrWcYEBAxf0LGrvg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/ZnJlZWxvZ292ZWN0/b3JzLm5ldC93cC1j/b250ZW50L3VwbG9h/ZHMvMjAyMS8xMC9z/aGFyZWNhcmUtbG9n/by1mcmVlbG9nb3Zl/Y3RvcnMubmV0Xy00/MDB4NDAwLnBuZw" alt="Company Logo" className="w-14 h-14 mb-2" />
+                <div className="flex flex-col  items-center md:items-start gap-2">
+                    <SiIfood size={40} />
                     <span className="text-xl font-bold tracking-wide">Share & Care</span>
                     <span className="text-xs text-[#9EADBF]">&copy; {new Date().getFullYear()} All rights reserved.</span>
                 </div>

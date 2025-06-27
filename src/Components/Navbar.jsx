@@ -2,6 +2,7 @@ import { use } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Contexts/AuthContext";
 import Swal from "sweetalert2";
+import { SiIfood } from "react-icons/si";
 
 const Navbar = () => {
   const { user, logOutUser } = use(AuthContext);
@@ -85,7 +86,12 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="text-xl font-bold">Share & Care</a>
+        <div className="flex gap-2 items-center">
+          <div>
+            <SiIfood size={20} />
+          </div>
+          <a className="text-xl font-bold">Share & Care</a>
+        </div>
       </div>
 
       <div className="navbar-end">
