@@ -3,15 +3,31 @@ import { AuthContext } from "../../Contexts/AuthContext";
 import Loader from "../../Components/Loader";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useMutation } from "@tanstack/react-query";
 
 const AddFood = () => {
   const { user } = use(AuthContext);
 
+  const mutation = useMutation({
+    mutationFn: (newFoodData) => {
+      return axios.post("http://localhost:3000/foods", newFoodData);
+    },
+    onError: (error, variables, context) => {
+      // An error happened!
+      console.log(`rolling back optimistic update with id ${context.id} : ` + error.message) ;
+    },
+    onSuccess: () => {
+      Swal.fire({
+        title: "Thanks for sharing Love!",
+        icon: "success",
+        draggable: true,
+      });
+    },
+  });
+
   if (!user) {
     return <Loader></Loader>;
   }
-
-  console.log(user);
 
   const handleAddFood = (e) => {
     e.preventDefault();
@@ -28,7 +44,6 @@ const AddFood = () => {
     const donorEmail = user.email;
     const donorPhotoURL = user.photoURL;
     const uid = user.uid;
-    
 
     const newFoodData = {
       name,
@@ -41,25 +56,12 @@ const AddFood = () => {
       donorName,
       donorEmail,
       donorPhotoURL,
-      uid
-
+      uid,
     };
 
-    axios
-      .post("http://localhost:3000/foods", newFoodData)
-      .then((response) => {
-        if (response.data.insertedId) {
-          Swal.fire({
-            title: "Thanks for sharing Love!",
-            icon: "success",
-            draggable: true,
-          });
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    mutation.mutate(newFoodData);
   };
+
   return (
     <div className="min-h-screen flex justify-center items-start pt-10 px-4">
       <form
@@ -140,12 +142,16 @@ const AddFood = () => {
           <label className="label">
             <span className="label-text">Food Status</span>
           </label>
-          <select defaultValue="Pick a color" name="status" className="select w-full ">
-              <option disabled={true}>Food Status</option>
-              <option >Available</option>
-              <option >Requested</option>
-              <option >Unavailable</option>
-            </select>
+          <select
+            defaultValue="Pick a color"
+            name="status"
+            className="select w-full "
+          >
+            <option disabled={true}>Food Status</option>
+            <option>Available</option>
+            <option>Requested</option>
+            <option>Unavailable</option>
+          </select>
         </div>
 
         {/* Additional Notes */}

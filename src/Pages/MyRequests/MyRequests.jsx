@@ -1,21 +1,26 @@
-import axios from "axios";
-import React, { use, useEffect, useState } from "react";
+import React, { use } from "react";
 import { AuthContext } from "../../Contexts/AuthContext";
 import RequestTableRow from "./RequestTableRow";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "../../Components/Loader";
 
 const MyRequests = () => {
   const { user } = use(AuthContext);
-  const [requests, setRequests] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3000/foodRequest/${user.uid}`)
-      .then((response) => {
-        setRequests(response.data);
-      });
-  }, []);
+  const { isPending, isError, data , error } = useQuery({
+    queryKey: ['requestedFoodData'],
+    queryFn: () => {
+      return fetch(`http://localhost:3000/foodRequest/${user.uid}`).then((res) =>
+        res.json()
+      );
+    },
+  });
 
-  console.log(requests)
+  console.log(data);
+
+  if(isPending) return <Loader></Loader>;
+
+  if(isError) return console.log('An error has occurred: ' + error.message);
 
   return (
     <div className="min-h-screen  px-6 py-10">
@@ -35,13 +40,13 @@ const MyRequests = () => {
               </tr>
             </thead>
             <tbody>
-              {requests.map((request) => (
+              {data.map((request) => (
                 <RequestTableRow
                   key={request?._id}
                   request={request}
                 ></RequestTableRow>
               ))}
-              {requests.length === 0 && (
+              {data.length === 0 && (
                 <tr>
                   <td colSpan="5" className="text-center py-4">
                     No requests found.
