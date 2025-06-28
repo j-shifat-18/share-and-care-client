@@ -23,7 +23,7 @@ const AvailableFoods = () => {
   console.log(availableFoods);
 
   const handleSortByExpireDate = () => {
-    axios.get("http://localhost:3000/sortByExpireDate")
+    axios.get("https://share-and-care-server.vercel.app/sortByExpireDate")
     .then((response)=>{
       console.log(response.data)
       setFood(response.data);

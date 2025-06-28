@@ -10,7 +10,7 @@ const FoodDetailsCard = () => {
   const [foodData , setFoodData] =useState([]);
   const {id} = useParams();
   useEffect(()=>{
-    axios.get(`http://localhost:3000/foods/${id}` , {
+    axios.get(`https://share-and-care-server.vercel.app/foods/${id}` , {
         headers:{authorization : `Bearer ${user.accessToken}`}
       })
     .then(response=>{
@@ -44,11 +44,11 @@ const FoodDetailsCard = () => {
     const requestedAt = new Date();
     const requestInfo = { foodId, requestName, requestEmail, uid, requestedAt };
     axios
-      .post("http://localhost:3000/foodRequest", requestInfo)
+      .post("https://share-and-care-server.vercel.app/foodRequest", requestInfo)
       .then((response) => {
         if (response.data.insertedId) {
           axios
-            .patch(`http://localhost:3000/foods/${_id}`, {
+            .patch(`https://share-and-care-server.vercel.app/foods/${_id}`, {
               status: "Requested",
             })
             .then((response2) => {

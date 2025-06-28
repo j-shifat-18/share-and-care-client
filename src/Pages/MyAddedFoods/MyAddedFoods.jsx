@@ -58,7 +58,7 @@ const MyAddedFoods = () => {
     console.log(newFoodData);
 
     axios
-      .patch(`http://localhost:3000/foods/${selectedFood._id}`, newFoodData)
+      .patch(`https://share-and-care-server.vercel.app/foods/${selectedFood._id}`, newFoodData)
       .then((result) => {
         if (result.data.modifiedCount) {
           toast.success("Food Updated !", {
@@ -93,7 +93,7 @@ const MyAddedFoods = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:3000/foods/${id}`)
+          .delete(`https://share-and-care-server.vercel.app/foods/${id}`)
           .then((response) => {
             if (response.data.deletedCount) {
               Swal.fire({

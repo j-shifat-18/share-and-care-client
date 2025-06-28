@@ -10,7 +10,7 @@ const AddFood = () => {
 
   const mutation = useMutation({
     mutationFn: (newFoodData) => {
-      return axios.post("http://localhost:3000/foods", newFoodData);
+      return axios.post("https://share-and-care-server.vercel.app/foods", newFoodData);
     },
     onError: (error, variables, context) => {
       // An error happened!

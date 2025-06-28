@@ -20,7 +20,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: () => fetch("http://localhost:3000/featuredFood"),
+        loader: () => fetch("https://share-and-care-server.vercel.app/featuredFood"),
         Component: Home,
         hydrateFallbackElement: <Loader></Loader>,
       },
@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/availableFoods",
-        loader: () => fetch("http://localhost:3000/foods"),
+        loader: () => fetch("https://share-and-care-server.vercel.app/foods"),
         element: <AvailableFoods></AvailableFoods>,
         hydrateFallbackElement: <Loader></Loader>,
       },
