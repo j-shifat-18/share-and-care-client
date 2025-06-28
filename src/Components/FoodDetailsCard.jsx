@@ -1,5 +1,5 @@
-import React, { use } from "react";
-import { Link, useLoaderData } from "react-router";
+import React, { use, useEffect, useState } from "react";
+import { Link, useParams } from "react-router";
 import { AuthContext } from "../Contexts/AuthContext";
 import Loader from "./Loader";
 import axios from "axios";
@@ -7,7 +7,19 @@ import Swal from "sweetalert2";
 
 const FoodDetailsCard = () => {
   const { user } = use(AuthContext);
-  const foodData = useLoaderData();
+  const [foodData , setFoodData] =useState([]);
+  const {id} = useParams();
+  useEffect(()=>{
+    axios.get(`http://localhost:3000/foods/${id}` , {
+        headers:{authorization : `Bearer ${user.accessToken}`}
+      })
+    .then(response=>{
+      setFoodData(response.data)
+    })
+    .then(error=>{
+      console.log(error);
+    })
+  },[])
   const {
     _id,
     name,

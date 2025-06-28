@@ -3,20 +3,20 @@ import { AuthContext } from "../../Contexts/AuthContext";
 import RequestTableRow from "./RequestTableRow";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../../Components/Loader";
+import useApplicationApi from "../../Hooks/useApplicationApi";
 
 const MyRequests = () => {
   const { user } = use(AuthContext);
+  const {myRequestedFoodsPromise} = useApplicationApi();
 
   const { isPending, isError, data , error } = useQuery({
     queryKey: ['requestedFoodData'],
     queryFn: () => {
-      return fetch(`http://localhost:3000/foodRequest/${user.uid}`).then((res) =>
-        res.json()
+      return myRequestedFoodsPromise(user.uid).then((res) =>
+        res.data
       );
     },
   });
-
-  console.log(data);
 
   if(isPending) return <Loader></Loader>;
 

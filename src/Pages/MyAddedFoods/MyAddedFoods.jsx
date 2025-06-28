@@ -1,27 +1,32 @@
-import React, { use, useEffect, useState } from "react";
+import React, { use, useState } from "react";
 import { AuthContext } from "../../Contexts/AuthContext";
 import axios from "axios";
 import FoodTableRow from "./foodTableRow";
 import Swal from "sweetalert2";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import { formatForDateTimeLocal } from "../../Utils/formatDate";
+import useApplicationApi from "../../Hooks/useApplicationApi";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "../../Components/Loader";
 
 const MyAddedFoods = () => {
-  const [myFoods, setMyFoods] = useState([]);
   const [selectedFood, setSelectedFood] = useState(null);
   const { user } = use(AuthContext);
-  const { uid } = user;
+  const { myAddedFoodsPromise } = useApplicationApi();
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3000/foods?uid=${uid}`)
-      .then((response) => {
-        setMyFoods(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+
+  const { isPending, isError, data , error } = useQuery({
+    queryKey: ['requestedFoodData'],
+    queryFn: () => {
+      return myAddedFoodsPromise(user.uid).then((res) =>
+        res.data
+      );
+    },
+  });
+
+  if(isPending) return <Loader></Loader>;
+
+  if(isError) return console.log('An error has occurred: ' + error.message);
 
   const openModal = (food) => {
     setSelectedFood(food);
@@ -97,8 +102,8 @@ const MyAddedFoods = () => {
                 icon: "success",
               });
 
-              const newFoods = myFoods.filter((food) => food._id !== id);
-              setMyFoods(newFoods);
+              const newFoods = data.filter((food) => food._id !== id);
+              data(newFoods);
             }
           })
           .catch((error) => {
@@ -107,8 +112,6 @@ const MyAddedFoods = () => {
       }
     });
   };
-
-
 
   return (
     <div className="min-h-screen px-6 py-10">
@@ -127,7 +130,7 @@ const MyAddedFoods = () => {
               </tr>
             </thead>
             <tbody>
-              {myFoods.map((food) => (
+              {data.map((food) => (
                 <FoodTableRow
                   key={food._id}
                   food={food}
@@ -135,7 +138,7 @@ const MyAddedFoods = () => {
                   openModal={openModal}
                 ></FoodTableRow>
               ))}
-              {myFoods.length === 0 && (
+              {data.length === 0 && (
                 <tr>
                   <td colSpan="5" className="text-center py-4">
                     No listings found.
