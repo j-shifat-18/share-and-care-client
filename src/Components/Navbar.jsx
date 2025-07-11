@@ -56,7 +56,7 @@ const Navbar = () => {
       });
   };
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <div className="navbar border-b border-base-100  px-2 md:px-5 lg:px-10 py-3 fixed z-50 top-0 bg-transparent backdrop-blur-3xl">
