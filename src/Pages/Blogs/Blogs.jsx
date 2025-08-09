@@ -1,71 +1,49 @@
-import React from "react";
+import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { Link } from "react-router";
-
-const blogPosts = [
-  {
-    id: 1,
-    title: "Reducing Food Waste: Simple Steps You Can Take",
-    description:
-      "Discover easy ways to reduce food waste in your home and community...",
-    image: "https://source.unsplash.com/800x500/?food,reduce",
-    date: "August 5, 2025",
-    author: "Admin",
-  },
-  {
-    id: 2,
-    title: "How Sharing Food Brings Communities Together",
-    description:
-      "Food has the power to unite people, break barriers, and build trust...",
-    image: "https://source.unsplash.com/800x500/?food,sharing",
-    date: "July 29, 2025",
-    author: "Admin",
-  },
-  {
-    id: 3,
-    title: "Nutritional Benefits of Freshly Cooked Meals",
-    description:
-      "Explore why freshly cooked meals are healthier and more nutritious...",
-    image: "https://source.unsplash.com/800x500/?healthy,food",
-    date: "July 20, 2025",
-    author: "Admin",
-  },
-];
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import Loader from "../../Components/Loader";
 
 const Blogs = () => {
-  return (
-    <div className="min-h-screen bg-black py-12 px-4 md:px-16">
-      <motion.h1
-        className="text-4xl font-bold text-primary text-center mb-12"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        Our Blogs
-      </motion.h1>
+    const axiosSecure = useAxiosSecure();
+  const { data: blogs = [], isLoading } = useQuery({
+    queryKey: ["blogs"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/blogs");
+      return res.data;
+    },
+  });
 
-      <div className="grid gap-8 md:grid-cols-3">
-        {blogPosts.map((post) => (
+  if (isLoading) {
+    return <Loader></Loader>;
+  }
+  return (
+    <div className="min-h-screen bg-[#141A1F] text-primary py-12 px-6 md:px-20">
+      <h1 className="text-4xl font-bold mb-8 text-center">
+        Our Blogs
+      </h1>
+      <div className="grid md:grid-cols-3 gap-8">
+        {blogs.map((blog) => (
           <motion.div
-            key={post.id}
-            className="bg-[#2B3640] rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border border-[#9EADBF]"
-            whileHover={{ scale: 1.03 }}
+            key={blog._id}
+            whileHover={{ scale: 1.05 }}
+            className="bg-[#2B3640] rounded-xl shadow-lg overflow-hidden border border-[#9EADBF]"
           >
             <img
-              src={post.image}
-              alt={post.title}
-              className="w-full h-56 object-cover"
+              src={blog.image}
+              alt={blog.title}
+              className="h-48 w-full object-cover"
             />
-            <div className="p-6">
-              <p className="text-sm text-gray-400 mb-2">
-                {post.date} • {post.author}
-              </p>
-              <h2 className="text-xl text-primary font-semibold mb-3">
-                {post.title}
+            <div className="p-5">
+              <h2 className="text-2xl font-semibold text-primary">
+                {blog.title}
               </h2>
-              <p className="text-neutral mb-4">{post.description}</p>
+              <p className="text-neutral mt-2">
+                {blog.content.slice(0, 80)}...
+              </p>
               <Link
-                to={`/blogs/${post.id}`}
-                className="text-accent hover:underline font-medium"
+                to={`/blogs/${blog._id}`}
+                className="mt-4 inline-block text-accent hover:underline font-medium"
               >
                 Read More →
               </Link>

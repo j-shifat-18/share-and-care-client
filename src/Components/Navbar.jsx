@@ -3,9 +3,12 @@ import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Contexts/AuthContext";
 import Swal from "sweetalert2";
 import { SiIfood } from "react-icons/si";
+import Loader from "./Loader";
 
 const Navbar = () => {
-  const { user, logOutUser } = use(AuthContext);
+  const { user, logOutUser , loading } = use(AuthContext);
+
+  if(loading) return <Loader></Loader>;
 
   const links = (
     <>
