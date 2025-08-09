@@ -24,7 +24,8 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: () => fetch("https://share-and-care-server.vercel.app/featuredFood"),
+        loader: () =>
+          fetch("https://share-and-care-server.vercel.app/featuredFood"),
         Component: Home,
         hydrateFallbackElement: <Loader></Loader>,
       },
@@ -43,29 +44,25 @@ export const router = createBrowserRouter([
         hydrateFallbackElement: <Loader></Loader>,
       },
       {
-        path:"/aboutUs",
-        element:<AboutUs></AboutUs>
+        path: "/aboutUs",
+        element: <AboutUs></AboutUs>,
       },
       {
-        path:"/contactUs",
-        element:<ContactUs></ContactUs>
+        path: "/contactUs",
+        element: <ContactUs></ContactUs>,
       },
       {
-        path:"/blogs",
-        element:<Blogs></Blogs>
+        path: "/blogs",
+        element: <Blogs></Blogs>,
       },
       {
-        path:"/blogs/:id",
-        element:<BlogDetails></BlogDetails>
+        path: "/blogs/:id",
+        element: <BlogDetails></BlogDetails>,
       },
       {
         path: "/availableFoods/:id",
-        element: (
-          <PrivateRoute>
-            <FoodDetailsCard></FoodDetailsCard>
-          </PrivateRoute>
-        ),
-        hydrateFallbackElement: <Loader></Loader>,
+        element: <FoodDetailsCard></FoodDetailsCard>,
+        // hydrateFallbackElement: <Loader></Loader>,
       },
       {
         path: "/myFoods",

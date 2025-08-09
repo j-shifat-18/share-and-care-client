@@ -6,9 +6,9 @@ import { SiIfood } from "react-icons/si";
 import Loader from "./Loader";
 
 const Navbar = () => {
-  const { user, logOutUser , loading } = use(AuthContext);
+  const { user, logOutUser, loading } = use(AuthContext);
 
-  if(loading) return <Loader></Loader>;
+  if (loading) return <Loader></Loader>;
 
   const links = (
     <>
@@ -26,10 +26,7 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink
-          to="/blogs"
-          className="font-medium text-sm text-primary"
-        >
+        <NavLink to="/blogs" className="font-medium text-sm text-primary">
           Blogs
         </NavLink>
       </li>
@@ -43,21 +40,28 @@ const Navbar = () => {
           Contact US
         </NavLink>
       </li>
-      <li>
-        <NavLink to="/addFood" className="font-medium text-sm text-primary">
-          Add Food
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/myRequests" className="font-medium text-sm text-primary">
-          My Requests
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/myFoods" className="font-medium text-sm text-primary">
-          My Foods
-        </NavLink>
-      </li>
+      {user && (
+        <>
+          <li>
+            <NavLink to="/addFood" className="font-medium text-sm text-primary">
+              Add Food
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/myRequests"
+              className="font-medium text-sm text-primary"
+            >
+              My Requests
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/myFoods" className="font-medium text-sm text-primary">
+              My Foods
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
 

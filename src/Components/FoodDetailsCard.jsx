@@ -1,18 +1,18 @@
 import React, { use, useEffect, useState } from "react";
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { AuthContext } from "../Contexts/AuthContext";
 import Loader from "./Loader";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 const FoodDetailsCard = () => {
-  const { user } = use(AuthContext);
+  const { user , loading} = use(AuthContext);
   const [foodData , setFoodData] =useState([]);
   const {id} = useParams();
+  const axiosPublic = useAxiosPublic();
   useEffect(()=>{
-    axios.get(`https://share-and-care-server.vercel.app/foods/${id}` , {
-        headers:{authorization : `Bearer ${user.accessToken}`}
-      })
+    axiosPublic.get(`/foods/${id}`)
     .then(response=>{
       setFoodData(response.data)
     })
@@ -36,7 +36,12 @@ const FoodDetailsCard = () => {
 
   const convertedExpireDate = new Date(expireDate).toLocaleString();
 
+  const navigate = useNavigate();
+
   const handleFoodRequest = (id) => {
+    if(!user) {
+      navigate('/login')
+    }
     const foodId = id;
     const requestName = user.displayName;
     const requestEmail = user.email;
@@ -70,6 +75,8 @@ const FoodDetailsCard = () => {
       });
   };
 
+  if(loading) return<Loader></Loader>;
+
   return (
     <div className="min-h-screen px-6 py-10">
       <div className="max-w-4xl mx-auto space-y-6">
@@ -85,7 +92,7 @@ const FoodDetailsCard = () => {
 
         {/* Title */}
         <h1 className="text-3xl font-bold">{name}</h1>
-        <p className="text-sm text-gray-400">Posted by {user.displayName}</p>
+        {/* <p className="text-sm text-gray-400">Posted by displayName</p> */}
 
         {/* Image */}
         <img

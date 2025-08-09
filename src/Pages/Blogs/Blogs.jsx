@@ -1,15 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { Link } from "react-router";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Loader from "../../Components/Loader";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Blogs = () => {
-    const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
   const { data: blogs = [], isLoading } = useQuery({
     queryKey: ["blogs"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/blogs");
+      const res = await axiosPublic.get("/blogs");
       return res.data;
     },
   });
