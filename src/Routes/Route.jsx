@@ -13,6 +13,8 @@ import MyRequests from "../Pages/MyRequests/MyRequests";
 import ErrorPage from "../Pages/ErrorPage";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import ContactUs from "../Pages/ContactUs/ContactUs";
+import Blogs from "../Pages/Blogs/Blogs";
+import BlogDetails from "../Pages/BlogDetails/BlogDetails";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +49,14 @@ export const router = createBrowserRouter([
       {
         path:"/contactUs",
         element:<ContactUs></ContactUs>
+      },
+      {
+        path:"/blogs",
+        element:<Blogs></Blogs>
+      },
+      {
+        path:"/blogs/:id",
+        element:<BlogDetails></BlogDetails>
       },
       {
         path: "/availableFoods/:id",

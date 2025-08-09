@@ -23,6 +23,14 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
+        <NavLink
+          to="/blogs"
+          className="font-medium text-sm text-primary"
+        >
+          Blogs
+        </NavLink>
+      </li>
+      <li>
         <NavLink to="/aboutUs" className="font-medium text-sm text-primary">
           About US
         </NavLink>
@@ -104,11 +112,12 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* <ul className="menu menu-horizontal px-1 ">{links}</ul> */}
+      <div className="navbar-center hidden lg:flex ">
+        <ul className="menu menu-horizontal px-1 flex">{links}</ul>
+      </div>
+
       <div className="navbar-end">
-        {/* <ul className="menu menu-horizontal px-1 ">{links}</ul> */}
-        <div className=" hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{links}</ul>
-        </div>
         {user ? (
           <button
             onClick={handleLogout}
