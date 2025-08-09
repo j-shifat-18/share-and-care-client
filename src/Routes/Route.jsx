@@ -11,6 +11,8 @@ import Loader from "../Components/Loader";
 import MyAddedFoods from "../Pages/MyAddedFoods/MyAddedFoods";
 import MyRequests from "../Pages/MyRequests/MyRequests";
 import ErrorPage from "../Pages/ErrorPage";
+import AboutUs from "../Pages/AboutUs/AboutUs";
+import ContactUs from "../Pages/ContactUs/ContactUs";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +39,14 @@ export const router = createBrowserRouter([
         loader: () => fetch("https://share-and-care-server.vercel.app/foods"),
         element: <AvailableFoods></AvailableFoods>,
         hydrateFallbackElement: <Loader></Loader>,
+      },
+      {
+        path:"/aboutUs",
+        element:<AboutUs></AboutUs>
+      },
+      {
+        path:"/contactUs",
+        element:<ContactUs></ContactUs>
       },
       {
         path: "/availableFoods/:id",

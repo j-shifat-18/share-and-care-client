@@ -23,6 +23,16 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
+        <NavLink to="/aboutUs" className="font-medium text-sm text-primary">
+          About US
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/contactUs" className="font-medium text-sm text-primary">
+          Contact US
+        </NavLink>
+      </li>
+      <li>
         <NavLink to="/addFood" className="font-medium text-sm text-primary">
           Add Food
         </NavLink>
@@ -59,7 +69,7 @@ const Navbar = () => {
   // console.log(user);
 
   return (
-    <div className="navbar border-b border-base-100  px-2 md:px-5 lg:px-10 py-3 fixed z-50 top-0 bg-transparent backdrop-blur-3xl">
+    <div className="navbar border-b border-base-100 px-2 md:px-6 lg:px-12 py-3 fixed z-50 top-0 bg-transparent backdrop-blur-3xl">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

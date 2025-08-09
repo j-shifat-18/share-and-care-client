@@ -7,7 +7,7 @@ import banner2 from "../assets/banner-2-resized.jpg";
 import banner3 from "../assets/banner-3-resized.jpg";
 import { Link } from "react-router";
 
-const backgroundImages = [banner1, banner2, banner3]; 
+const backgroundImages = [banner1, banner2, banner3];  
 
 const Banner = () => {
   const [index, setIndex] = useState(0);
@@ -21,7 +21,7 @@ const Banner = () => {
   }, []);
 
   return (
-    <div className="relative mb-10 h-[300px] md:h-[400px] lg:h-[550px] rounded-xl overflow-hidden">
+    <div className="relative mb-12 md:mb-16 lg:mb-24 h-[300px] md:h-[500px] lg:h-[650px] overflow-hidden">
       {/* Background Images */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -38,7 +38,7 @@ const Banner = () => {
       </AnimatePresence>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-[#0000001a]  z-10 flex flex-col items-center justify-center text-primary text-center px-4">
+      <div className="absolute inset-0 bg-[#000000]/10  z-10 flex flex-col items-center justify-center text-primary text-center px-4">
         <h2 className="font-black text-2xl md:text-3xl lg:text-5xl text-primary drop-shadow-lg">
           Share Surplus, Nourish Communities
         </h2>
@@ -49,7 +49,7 @@ const Banner = () => {
           to="/availableFoods"
           className="btn rounded-xl font-bold px-5 py-3 bg-neutral text-secondary mt-8"
         >
-          Get Started
+          Browse Foods
         </Link>
       </div>
     </div>

@@ -20,7 +20,7 @@ const communityData = [
 
 const CommunityImpact = () => {
   return (
-    <section className="mx-auto px-4 py-10">
+    <section className="max-w-4/5 mx-auto px-4 mb-12 md:mb-16 lg:mb-24">
       <h2 className="font-bold text-3xl text-white mb-4">Community Impact</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {communityData.map((item, idx) => (

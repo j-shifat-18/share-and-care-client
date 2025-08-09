@@ -3,7 +3,7 @@ import { FaBoxOpen, FaSearch, FaComments } from "react-icons/fa";
 
 const HowItWorks = () => {
   return (
-    <section className="mx-auto px-4 py-10">
+    <section className="max-w-4/5 mx-auto px-4 mb-12 md:mb-16 lg:mb-24">
       <h2 className="font-bold text-lg text-white">How It Works</h2>
       <h1 className="text-3xl font-bold text-white mt-2 mb-4">
         Simple Steps to Share and Care

@@ -20,12 +20,12 @@ const AvailableFoods = () => {
     setFood(filteredItems);
   }, [availableFoods ,searchText ]);
 
-  console.log(availableFoods);
+  // console.log(availableFoods);
 
   const handleSortByExpireDate = () => {
     axios.get("https://share-and-care-server.vercel.app/sortByExpireDate")
     .then((response)=>{
-      console.log(response.data)
+      // console.log(response.data)
       setFood(response.data);
     })
     .catch(error=>{
@@ -87,7 +87,7 @@ const AvailableFoods = () => {
           }`}
         >
           {foods.map((food) => (
-            <FoodCard food={food}></FoodCard>
+            <FoodCard key={food._id} food={food}></FoodCard>
           ))}
         </div>
 

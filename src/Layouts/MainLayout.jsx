@@ -12,7 +12,8 @@ const MainLayout = () => {
             <header>
                 <Navbar></Navbar>
             </header>
-            <main className='max-w-4/5 mx-auto pt-24'>
+            <div className='h-16'></div>
+            <main>
                 <Outlet></Outlet>
             </main>
             {!hideFooter && (
