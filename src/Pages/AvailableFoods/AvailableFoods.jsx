@@ -48,7 +48,7 @@ const AvailableFoods = () => {
 
           <button
             onClick={handleSortByExpireDate}
-            className="btn bg-base-100 text-primary w-full md:w-52"
+            className="btn bg-base-100 text-primary w-full md:w-52 hover:bg-white hover:text-black"
           >
             Sort by: Expiry Date
           </button>
@@ -92,7 +92,7 @@ const AvailableFoods = () => {
         </div>
 
         {/* Pagination */}
-        <div className="mt-10 flex justify-center items-center gap-2">
+        {/* <div className="mt-10 flex justify-center items-center gap-2">
           <button className="btn btn-sm btn-ghost">&lt;</button>
           <button className="btn btn-sm btn-active">1</button>
           <button className="btn btn-sm btn-ghost">2</button>
@@ -100,7 +100,7 @@ const AvailableFoods = () => {
           <button className="btn btn-sm btn-ghost">4</button>
           <button className="btn btn-sm btn-ghost">5</button>
           <button className="btn btn-sm btn-ghost">&gt;</button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

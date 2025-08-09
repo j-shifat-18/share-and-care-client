@@ -46,14 +46,44 @@ const VoicesOfCare = () => {
         slidesPerView={3}
         centeredSlides={true}
         pagination={{ clickable: true }}
-        autoplay={{ delay: 7000 }}
+        autoplay={{ delay: 3000 }}
         loop={true}
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
         className="max-w-6xl mx-auto"
         spaceBetween={40}
+        breakpoints={{
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            centeredSlides: false,
+          },
+          640: {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            centeredSlides: false,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+            centeredSlides: true,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 40,
+            centeredSlides: true,
+          },
+        }}
       >
         {testimonials.map(({ name, location, photo, testimonial }, idx) => {
-          const isActive = idx === activeIndex;
+          // Adjust activeIndex matching with breakpoints:
+          // On mobile with slidesPerView=1 and centeredSlides=false,
+          // the slide indexes line up, so activeIndex is fine.
+          // Just keep logic same, Framer motion will animate the focused slide.
+
+          // For mobile when centeredSlides false, treat current slide as active:
+          const isActive =
+            idx === activeIndex ||
+            (window.innerWidth < 768 && idx === activeIndex);
 
           return (
             <SwiperSlide key={idx}>
@@ -63,9 +93,6 @@ const VoicesOfCare = () => {
                   y: isActive ? 20 : 0,
                   opacity: isActive ? 1 : 0.4,
                   scale: isActive ? 1 : 0.85,
-                //   boxShadow: isActive
-                //     ? "0 25px 40px rgba(158, 173, 191, 0.5)"
-                //     : "0 8px 20px rgba(0,0,0,0.15)",
                   borderRadius: "1rem",
                 }}
                 transition={{ type: "spring", stiffness: 280, damping: 30 }}
@@ -87,7 +114,6 @@ const VoicesOfCare = () => {
                 </p>
                 <p className="text-sm text-[#9CA3AF] mt-1">{location}</p>
 
-                {/* Stylish quotation marks behind text */}
                 {isActive && (
                   <motion.span
                     initial={{ opacity: 0, scale: 0.8 }}

@@ -115,7 +115,7 @@ const Navbar = () => {
           <div>
             <SiIfood size={20} />
           </div>
-          <a className="text-xl font-bold">Share & Care</a>
+          <a className="text-lg md:text-xl font-bold">Share & Care</a>
         </div>
       </div>
 
