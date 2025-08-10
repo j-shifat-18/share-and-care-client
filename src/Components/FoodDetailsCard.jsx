@@ -152,7 +152,7 @@ const FoodDetailsCard = () => {
         <div className="text-right">
           <button
             onClick={() => handleFoodRequest(_id)}
-            className="btn bg-primary  text-secondary rounded-full px-6"
+            className="btn bg-primary hover:bg-white/20 hover:text-white  text-secondary rounded-full px-6"
           >
             Request
           </button>

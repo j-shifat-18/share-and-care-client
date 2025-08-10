@@ -18,14 +18,14 @@ const FoodTableRow = ({ food, handleDelete, openModal }) => {
         <td className="text-center">
           <span
             onClick={() => openModal(food)}
-            className="cursor-pointer text-primary mr-2"
+            className="btn bg-neutral hover:bg-white/20 hover:text-white  text-secondary rounded-xl font-bold text-sm mr-2"
           >
             Update
           </span>
-          |
+          <span className="text-2xl">|</span>
           <span
             onClick={() => handleDelete(food._id)}
-            className="text-error cursor-pointer ml-2 font-semibold"
+            className="btn bg-red-400 text-black hover:bg-red-600 hover:text-white  rounded-xl font-bold text-sm ml-2"
           >
             Delete
           </span>

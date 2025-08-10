@@ -128,7 +128,7 @@ const Navbar = () => {
         {user ? (
           <button
             onClick={handleLogout}
-            className="btn bg-base-100 text-primary rounded-xl font-bold text-sm"
+            className="btn bg-base-100 hover:bg-white hover:text-black text-primary rounded-xl font-bold text-sm"
           >
             Logout
           </button>
@@ -137,13 +137,13 @@ const Navbar = () => {
             <div className="flex flex-row gap-3">
               <Link
                 to="/login"
-                className="btn bg-neutral text-secondary rounded-xl font-bold text-sm"
+                className="btn bg-neutral hover:bg-white/20 hover:text-white  text-secondary rounded-xl font-bold text-sm"
               >
                 Login
               </Link>
               <Link
                 to="/signup"
-                className="btn bg-base-100 text-primary rounded-xl font-bold text-sm"
+                className="btn bg-base-100 hover:bg-white hover:text-black  text-primary rounded-xl font-bold text-sm"
               >
                 Sign Up
               </Link>

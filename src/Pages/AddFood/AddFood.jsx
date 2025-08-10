@@ -185,7 +185,7 @@ const AddFood = () => {
 
         {/* Submit Button */}
         <div className="text-right">
-          <button className="btn bg-primary text-secondary px-6 rounded-full">
+          <button className="btn bg-primary hover:bg-white/20 hover:text-white text-secondary px-6 rounded-full">
             Add Food
           </button>
         </div>

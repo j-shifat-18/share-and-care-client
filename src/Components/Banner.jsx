@@ -47,7 +47,7 @@ const Banner = () => {
         </p>
         <Link
           to="/availableFoods"
-          className="btn rounded-xl font-bold px-5 py-3 bg-neutral text-secondary mt-8"
+          className="btn rounded-xl font-bold px-5 py-3 bg-neutral hover:bg-white/20 hover:text-white text-secondary mt-8"
         >
           Browse Foods
         </Link>
